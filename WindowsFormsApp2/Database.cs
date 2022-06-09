@@ -49,5 +49,37 @@ namespace WindowsFormsApp2
                 }
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            String str;
+            SqlConnection myConn = new SqlConnection("Server=localhost;Integrated security=SSPI;Database=InvDatabase");
+
+            str = "CREATE TABLE Persons" +
+                  "(PersonID int," +
+                  "LastName varchar(255)," +
+                  "FirstName varchar(255)," +
+                  "Address varchar(255)," +
+                  "City varchar(255))";
+
+            SqlCommand myCommand = new SqlCommand(str, myConn);
+            try
+            {
+                myConn.Open();
+                myCommand.ExecuteNonQuery();
+                MessageBox.Show("TABLE Persons is Created Successfully", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
+            {
+                if (myConn.State == ConnectionState.Open)
+                {
+                    myConn.Close();
+                }
+            }
+        }
     }
 }

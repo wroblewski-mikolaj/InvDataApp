@@ -32,7 +32,7 @@ namespace WindowsFormsApp2
             this.LastNameLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btnCreateDatabase = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnAddTable = new System.Windows.Forms.Button();
             this.peopleFoundListbox = new System.Windows.Forms.ListBox();
             this.LastNameText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -65,14 +65,15 @@ namespace WindowsFormsApp2
             this.btnCreateDatabase.UseVisualStyleBackColor = true;
             this.btnCreateDatabase.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // btnAddTable
             // 
-            this.button3.Location = new System.Drawing.Point(501, 214);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAddTable.Location = new System.Drawing.Point(501, 214);
+            this.btnAddTable.Name = "btnAddTable";
+            this.btnAddTable.Size = new System.Drawing.Size(197, 42);
+            this.btnAddTable.TabIndex = 3;
+            this.btnAddTable.Text = "Add Persons Table";
+            this.btnAddTable.UseVisualStyleBackColor = true;
+            this.btnAddTable.Click += new System.EventHandler(this.button3_Click);
             // 
             // peopleFoundListbox
             // 
@@ -98,7 +99,7 @@ namespace WindowsFormsApp2
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.LastNameText);
             this.Controls.Add(this.peopleFoundListbox);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnAddTable);
             this.Controls.Add(this.btnCreateDatabase);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.LastNameLabel);
@@ -114,7 +115,7 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.Label LastNameLabel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCreateDatabase;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnAddTable;
         private System.Windows.Forms.ListBox peopleFoundListbox;
         private System.Windows.Forms.TextBox LastNameText;
     }
