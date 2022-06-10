@@ -13,12 +13,12 @@ namespace WindowsFormsApp2
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
-            
+
 
         public string FullInfo
         {
             get { 
-                return $"{ FirstName } { LastName } [{ EmailAddress }]"; 
+                return $"{ FirstName } { LastName } [{ EmailAddress }] <{PhoneNumber}>"; 
                 }
         }
 

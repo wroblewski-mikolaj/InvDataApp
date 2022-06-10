@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="Person.cs" />
+    <Compile Include="ProcedureCreator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Database.resx">

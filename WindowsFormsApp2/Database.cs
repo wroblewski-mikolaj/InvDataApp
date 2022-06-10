@@ -11,10 +11,10 @@ using System.Data.SqlClient;
 
 namespace WindowsFormsApp2
 {
-    public partial class Database : Form
+    public partial class InvDatabase : Form
     {
         List<Person> people = new List<Person>();
-        public Database()
+        public InvDatabase()
         {
             InitializeComponent();
             UpdateBinding();
@@ -65,7 +65,8 @@ namespace WindowsFormsApp2
             SqlConnection myConn = new SqlConnection("Server=localhost;Integrated security=SSPI;Database=InvDatabase");
 
             str = "CREATE TABLE " + TableName +
-                  "(PersonID int," +
+                  "(PersonID " +
+                  "int," +
                   "LastName nvarchar(50)," +
                   "FirstName nvarchar(30)," +
                   "EmailAddress nvarchar(100)," +
@@ -76,7 +77,7 @@ namespace WindowsFormsApp2
             {
                 myConn.Open();
                 myCommand.ExecuteNonQuery();
-                MessageBox.Show("TABLE \""+ TableName + "\" is Created Successfully", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("TABLE \"" + TableName + "\" is Created Successfully", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Exception ex)
             {
@@ -93,14 +94,76 @@ namespace WindowsFormsApp2
 
         private void NameYourTableBox_TextChanged(object sender, EventArgs e)
         {
-             
+
         }
+
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+
+
             AccessData db = new AccessData();
+            if (comboSearchBox.SelectedIndex == 0)
+            {
+                db.Choice = "FirstName";
+            }
+            if (comboSearchBox.SelectedIndex == 1)
+            {
+                db.Choice = "LastName";
+            }
+            if (comboSearchBox.SelectedIndex == 2)
+            {
+                db.Choice = "EmailAddress";
+            }
+            if (comboSearchBox.SelectedIndex == 3)
+            {
+                db.Choice = "PhoneNumber";
+            }
             people = db.GetPeople(LastNameText.Text);
             UpdateBinding();
+            
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            AccessData db = new AccessData();
+            db.InsertPerson(FirstNameInsTxt.Text, LastNameInsTxt.Text, EmailInsTxt.Text, TelNumberInsTxt.Text);
+        }
+
+        private void btnCreateInsertProcedure_Click(object sender, EventArgs e)
+        {
+            ProcedureCreator ins = new ProcedureCreator();
+            try
+            {
+                ins.CreateTable();
+                MessageBox.Show("Procedure is Created Successfully", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
+        }
+
+         void LastNameInsTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboSearchBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void toolTip1_Popup_1(object sender, PopupEventArgs e)
+        {
+
         }
     }
 }
