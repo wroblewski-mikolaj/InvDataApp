@@ -13,9 +13,17 @@ namespace WindowsFormsApp2
 {
     public partial class Database : Form
     {
+        List<Person> people = new List<Person>();
         public Database()
         {
             InitializeComponent();
+            UpdateBinding();
+        }
+
+        private void UpdateBinding()
+        {
+            peopleFoundListbox.DataSource = people;
+            peopleFoundListbox.DisplayMember = "FullInfo";
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,22 +60,23 @@ namespace WindowsFormsApp2
 
         private void button3_Click(object sender, EventArgs e)
         {
+            string TableName = NameYourTableBox.Text;
             String str;
             SqlConnection myConn = new SqlConnection("Server=localhost;Integrated security=SSPI;Database=InvDatabase");
 
-            str = "CREATE TABLE Persons" +
+            str = "CREATE TABLE " + TableName +
                   "(PersonID int," +
-                  "LastName varchar(255)," +
-                  "FirstName varchar(255)," +
-                  "Address varchar(255)," +
-                  "City varchar(255))";
+                  "LastName nvarchar(50)," +
+                  "FirstName nvarchar(30)," +
+                  "EmailAddress nvarchar(100)," +
+                  "PhoneNumber varchar(25))";
 
             SqlCommand myCommand = new SqlCommand(str, myConn);
             try
             {
                 myConn.Open();
                 myCommand.ExecuteNonQuery();
-                MessageBox.Show("TABLE Persons is Created Successfully", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("TABLE \""+ TableName + "\" is Created Successfully", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Exception ex)
             {
@@ -80,6 +89,18 @@ namespace WindowsFormsApp2
                     myConn.Close();
                 }
             }
+        }
+
+        private void NameYourTableBox_TextChanged(object sender, EventArgs e)
+        {
+             
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            AccessData db = new AccessData();
+            people = db.GetPeople(LastNameText.Text);
+            UpdateBinding();
         }
     }
 }
