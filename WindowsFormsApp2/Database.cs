@@ -60,41 +60,26 @@ namespace WindowsFormsApp2
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string TableName = NameYourTableBox.Text;
-            String str;
-            SqlConnection myConn = new SqlConnection("Server=localhost;Integrated security=SSPI;Database=InvDatabase");
-
-            str = "CREATE TABLE " + TableName +
-                  "(PersonID " +
-                  "int," +
-                  "LastName nvarchar(50)," +
-                  "FirstName nvarchar(30)," +
-                  "EmailAddress nvarchar(100)," +
-                  "PhoneNumber varchar(25))";
-
-            SqlCommand myCommand = new SqlCommand(str, myConn);
+            
+            TableCreator db = new TableCreator();
             try
             {
-                myConn.Open();
-                myCommand.ExecuteNonQuery();
-                MessageBox.Show("TABLE \"" + TableName + "\" is Created Successfully", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                db.CreateTable(NameYourTableBox.Text);
+                MessageBox.Show("TABLE \"" + NameYourTableBox.Text + "\" is Created Successfully", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            finally
-            {
-                if (myConn.State == ConnectionState.Open)
-                {
-                    myConn.Close();
-                }
-            }
+
         }
 
         private void NameYourTableBox_TextChanged(object sender, EventArgs e)
         {
-
+            //TableCreator db = new TableCreator();
+            //db.TableName = NameYourTableBox.Text;
+            //people = db.GetPeople(LastNameText.Text);
+            //UpdateBinding();
         }
 
 
@@ -136,7 +121,7 @@ namespace WindowsFormsApp2
             ProcedureCreator ins = new ProcedureCreator();
             try
             {
-                ins.CreateTable();
+                ins.AddIntoTable();
                 MessageBox.Show("Procedure is Created Successfully", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (System.Exception ex)
@@ -164,6 +149,17 @@ namespace WindowsFormsApp2
         private void toolTip1_Popup_1(object sender, PopupEventArgs e)
         {
 
+        }
+
+        private void LastNameText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(@"This button will create a new table within InvDatabase. 
+This new table, with a name of your choosing, will have 5 columns: Person ID, Last Name, First Name, Email Address, Phone Number", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

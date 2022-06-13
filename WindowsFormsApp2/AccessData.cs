@@ -16,7 +16,7 @@ namespace WindowsFormsApp2
 
                 using (System.Data.IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("InvDatabaseDB")))
             {
-                var output = connection.Query<Person>($"SELECT * FROM People where "+Choice+$" = '{ lastName }'").ToList();
+                var output = connection.Query<Person>($"SELECT * FROM People where {Choice} = '{ lastName }'").ToList();
                 //Next one is the same but uses a stored procedure, use interchangeably
                 //var output = connection.Query<Person>("dbo.People_GetByLastName @LastName", new { LastName = lastName }).ToList();
                 return output;

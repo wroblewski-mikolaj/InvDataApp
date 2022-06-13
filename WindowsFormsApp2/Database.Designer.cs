@@ -29,6 +29,7 @@ namespace WindowsFormsApp2
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvDatabase));
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnCreateDatabase = new System.Windows.Forms.Button();
             this.btnAddTable = new System.Windows.Forms.Button();
@@ -48,6 +49,7 @@ namespace WindowsFormsApp2
             this.TableLabel = new System.Windows.Forms.Label();
             this.comboSearchBox = new System.Windows.Forms.ComboBox();
             this.LastNameLabel = new System.Windows.Forms.Label();
+            this.btnInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSearch
@@ -96,6 +98,7 @@ namespace WindowsFormsApp2
             this.LastNameText.Name = "LastNameText";
             this.LastNameText.Size = new System.Drawing.Size(190, 26);
             this.LastNameText.TabIndex = 5;
+            this.LastNameText.TextChanged += new System.EventHandler(this.LastNameText_TextChanged);
             // 
             // NameYourTableBox
             // 
@@ -224,11 +227,23 @@ namespace WindowsFormsApp2
             this.LastNameLabel.TabIndex = 0;
             this.LastNameLabel.Text = "Select search option";
             // 
+            // btnInfo
+            // 
+            this.btnInfo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnInfo.BackgroundImage")));
+            this.btnInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnInfo.Location = new System.Drawing.Point(475, 409);
+            this.btnInfo.Name = "btnInfo";
+            this.btnInfo.Size = new System.Drawing.Size(44, 33);
+            this.btnInfo.TabIndex = 19;
+            this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.button1_Click);
+            // 
             // InvDatabase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 451);
+            this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.comboSearchBox);
             this.Controls.Add(this.TableLabel);
             this.Controls.Add(this.btnCreateInsertProcedure);
@@ -275,6 +290,7 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.Label TableLabel;
         private System.Windows.Forms.ComboBox comboSearchBox;
         private System.Windows.Forms.Label LastNameLabel;
+        private System.Windows.Forms.Button btnInfo;
     }
 }
 

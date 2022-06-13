@@ -10,7 +10,7 @@ namespace WindowsFormsApp2
 {
     class ProcedureCreator
     {
-        internal void CreateTable()
+        internal void AddIntoTable()
         {
             using (System.Data.IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("InvDatabaseDB")))
             {
