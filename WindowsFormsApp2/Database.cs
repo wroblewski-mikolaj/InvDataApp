@@ -28,7 +28,7 @@ namespace WindowsFormsApp2
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -76,17 +76,18 @@ namespace WindowsFormsApp2
 
         private void NameYourTableBox_TextChanged(object sender, EventArgs e)
         {
-            //TableCreator db = new TableCreator();
-            //db.TableName = NameYourTableBox.Text;
-            //people = db.GetPeople(LastNameText.Text);
-            //UpdateBinding();
+            /*TableCreator db = new TableCreator();
+            db.TableName = NameYourTableBox.Text;
+            people = db.GetPeople(LastNameText.Text);
+            UpdateBinding();*/
         }
 
 
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            if (comboSearchBox.SelectedIndex == -1)
+                MessageBox.Show("Please select a search option.");
 
             AccessData db = new AccessData();
             if (comboSearchBox.SelectedIndex == 0)
@@ -105,15 +106,18 @@ namespace WindowsFormsApp2
             {
                 db.Choice = "PhoneNumber";
             }
-            people = db.GetPeople(LastNameText.Text);
-            UpdateBinding();
-            
+            if (comboSearchBox.SelectedIndex != -1)
+            {
+                people = db.GetData(LastNameText.Text);
+                UpdateBinding();
+            }
+        
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
             AccessData db = new AccessData();
-            db.InsertPerson(FirstNameInsTxt.Text, LastNameInsTxt.Text, EmailInsTxt.Text, TelNumberInsTxt.Text);
+            db.InsertData(FirstNameInsTxt.Text, LastNameInsTxt.Text, EmailInsTxt.Text, TelNumberInsTxt.Text);
         }
 
         private void btnCreateInsertProcedure_Click(object sender, EventArgs e)
@@ -138,16 +142,6 @@ namespace WindowsFormsApp2
 
         private void comboSearchBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
-        }
-
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
-
-        }
-
-        private void toolTip1_Popup_1(object sender, PopupEventArgs e)
-        {
 
         }
 
@@ -160,6 +154,16 @@ namespace WindowsFormsApp2
         {
             MessageBox.Show(@"This button will create a new table within InvDatabase. 
 This new table, with a name of your choosing, will have 5 columns: Person ID, Last Name, First Name, Email Address, Phone Number", "InvProgram", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

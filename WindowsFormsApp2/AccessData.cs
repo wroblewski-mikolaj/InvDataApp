@@ -10,20 +10,20 @@ namespace WindowsFormsApp2
     class AccessData
     {
         public string Choice;
-    public List<Person> GetPeople(string lastName)
+    public List<Person> GetData(string lastName)
         {
             
 
                 using (System.Data.IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("InvDatabaseDB")))
             {
                 var output = connection.Query<Person>($"SELECT * FROM People where {Choice} = '{ lastName }'").ToList();
-                //Next one is the same but uses a stored procedure, use interchangeably
+                //Next one is the same but will use a stored procedure and (atm) works only with last name value, use interchangeably
                 //var output = connection.Query<Person>("dbo.People_GetByLastName @LastName", new { LastName = lastName }).ToList();
                 return output;
             }
         }
 
-        internal void InsertPerson(string firstName, string lastName, string emailAddress, string telNumber)
+        internal void InsertData(string firstName, string lastName, string emailAddress, string telNumber)
         {
             using (System.Data.IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("InvDatabaseDB")))
             {
